@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: buzz-ai
+    runtime: python
+    region: oregon  # change to: frankfurt, singapore, ohio as preferred
+
+    # Custom build: installs apt packages (Tesseract, Poppler) + pip deps
+    buildCommand: chmod +x build.sh && ./build.sh
+
+    # Download model (if missing) then start Gunicorn
+    # --workers 1: single worker to avoid loading the 700MB model multiple times
+    # --timeout 120: allow slow model inference without timing out
+    startCommand: python download_model.py && gunicorn app:app --workers 1 --timeout 120 --bind 0.0.0.0:$PORT
+
+    # Render auto-sets PORT; Flask/Gunicorn must bind to it
+    envVars:
+      - key: MODEL_PATH
+        value: models/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf
+      - key: MODEL_DIR
+        value: models
+      # Set GEMINI_API_KEY and TAVILY_API_KEY manually in the Render Dashboard
+      # under Environment → Add Environment Variable (do NOT commit .env to git)
+
+    # Persistent disk to survive model across deploys (avoids re-downloading)
+    # Requires a paid Render plan. Remove this block if on the free tier.
+    disk:
+      name: buzz-ai-models
+      mountPath: /opt/render/project/src/models
+      sizeGB: 2

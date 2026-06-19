@@ -1,4 +1,4 @@
-# RAG AI — 100% Local & Private
+# BUZZ AI — 100% Local & Private
 
 A full production-ready RAG (Retrieval-Augmented Generation) AI web application with visual intelligence capabilities, built with a Flask backend and a modern HTML/CSS/JS frontend.
 

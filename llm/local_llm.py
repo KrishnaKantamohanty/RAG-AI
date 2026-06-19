@@ -15,7 +15,7 @@ class LocalLLM:
                 verbose=False
             )
             
-        self.system_prompt = """You are RAG AI, a helpful document assistant. Rules:
+        self.system_prompt = """You are BUZZ AI, a helpful document assistant. Rules:
 1. Answer ONLY what the user asked. Be direct and concise.
 2. Use ONLY the document context provided to answer.
 3. Never mention chunks, vectors, or internal processing.

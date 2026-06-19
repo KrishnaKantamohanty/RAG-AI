@@ -1,1 +1,5 @@
 models/*.gguf filter=lfs diff=lfs merge=lfs -text
+
+# Force LF line endings for shell scripts (required on Render/Linux)
+*.sh text eol=lf
+*.py text eol=lf

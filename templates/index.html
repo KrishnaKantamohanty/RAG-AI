@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RAG AI</title>
+    <title>BUZZ AI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -222,7 +222,7 @@
     <div id="model-modal" class="hidden">
         <div class="modal-content">
             <h2>⚠️ AI Model Not Found</h2>
-            <p>To run RAG AI locally, you must download the free TinyLlama model (~700MB). This is a one-time setup step.</p>
+            <p>To run BUZZ AI locally, you must download the free TinyLlama model (~700MB). This is a one-time setup step.</p>
             <a href="https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf" class="btn-primary" target="_blank" download>Download TinyLlama Model</a>
             <p style="font-size: 0.85rem;">After downloading, place the .gguf file into the <strong>models/</strong> folder inside this project, then restart the server.</p>
             <button onclick="document.getElementById('model-modal').classList.add('hidden')" style="background: transparent; color: var(--text-secondary); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer;">I understand</button>
@@ -232,7 +232,7 @@
     <!-- STATE 1: Landing -->
     <div id="landing-state">
         <div class="landing-header">
-            <h1 class="gradient-text">✦ RAG AI</h1>
+            <h1 class="gradient-text">✦ BUZZ AI</h1>
             <p>Document Intelligence</p>
         </div>
         
@@ -265,7 +265,7 @@
         <!-- Left Panel -->
         <div id="left-panel">
             <div class="panel-header">
-                <h2 class="gradient-text" style="font-size: 1.25rem;">✦ RAG AI</h2>
+                <h2 class="gradient-text" style="font-size: 1.25rem;">✦ BUZZ AI</h2>
             </div>
             
             <div class="panel-content">
@@ -484,7 +484,7 @@
                 <div class="msg-container ai" id="${aiId}-container">
                     <div class="bubble">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
-                            <div class="ai-label">✦ RAG AI</div>
+                            <div class="ai-label">✦ BUZZ AI</div>
                             <button onclick="copyToClipboard(document.getElementById('${aiId}').innerText, this)" style="background:none; border:none; color:var(--text-secondary); cursor:pointer; font-size:0.75rem;">📋 Copy</button>
                         </div>
                         <div id="${aiId}" class="markdown-body"><div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
