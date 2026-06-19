@@ -21,9 +21,5 @@ services:
       # Set GEMINI_API_KEY and TAVILY_API_KEY manually in the Render Dashboard
       # under Environment → Add Environment Variable (do NOT commit .env to git)
 
-    # Persistent disk to survive model across deploys (avoids re-downloading)
-    # Requires a paid Render plan. Remove this block if on the free tier.
-    disk:
-      name: buzz-ai-models
-      mountPath: /opt/render/project/src/models
-      sizeGB: 2
+    # Note: On the free tier, the 700MB model re-downloads from HuggingFace on each cold start (~2-3 min).
+    # Upgrade to a paid plan and add a disk block here to persist the model across deploys.
