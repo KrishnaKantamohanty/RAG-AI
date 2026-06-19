@@ -13,6 +13,13 @@ class LocalImageAnalyzer:
         tesseract_path = os.getenv("TESSERACT_PATH")
         if tesseract_path and os.path.exists(tesseract_path):
             pytesseract.pytesseract.tesseract_cmd = tesseract_path
+            
+        self.tesseract_available = False
+        try:
+            pytesseract.get_tesseract_version()
+            self.tesseract_available = True
+        except Exception:
+            pass
 
     def analyze(self, base64_image: str, query: str = "") -> str:
         try:
@@ -21,12 +28,13 @@ class LocalImageAnalyzer:
             image = image.convert("RGB")
 
             ocr_text = ""
-            try:
-                ocr_text = pytesseract.image_to_string(image, lang="eng")
-                ocr_text = ocr_text.strip()
-            except Exception as e:
-                print(f"OCR Error: {e}")
-                ocr_text = ""
+            if self.tesseract_available:
+                try:
+                    ocr_text = pytesseract.image_to_string(image, lang="eng")
+                    ocr_text = ocr_text.strip()
+                except Exception as e:
+                    print(f"OCR Error: {e}")
+                    ocr_text = ""
 
             width, height = image.size
 

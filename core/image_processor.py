@@ -17,8 +17,17 @@ class ImageProcessor:
         tess_path = os.getenv("TESSERACT_PATH")
         if tess_path and os.path.exists(tess_path):
             pytesseract.pytesseract.tesseract_cmd = tess_path
+            
+        self.tesseract_available = False
+        try:
+            pytesseract.get_tesseract_version()
+            self.tesseract_available = True
+        except Exception:
+            print("OCR Warning: Tesseract is not installed or not in PATH. OCR features will be disabled.")
 
     def run_ocr(self, pil_image: Image.Image) -> str:
+        if not self.tesseract_available:
+            return ""
         try:
             text = pytesseract.image_to_string(pil_image, lang='eng')
             # Clean up empty lines
