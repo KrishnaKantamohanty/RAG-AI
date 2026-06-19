@@ -7,11 +7,10 @@ services:
     # Custom build: installs apt packages (Tesseract, Poppler) + pip deps
     buildCommand: chmod +x build.sh && ./build.sh
 
-    # Download model (if missing) then start Gunicorn
-    # --workers 1: single worker to avoid loading the 700MB model multiple times
-    # --timeout 120: allow slow model inference without timing out
-    startCommand: python download_model.py && gunicorn app:app --workers 1 --timeout 120 --bind 0.0.0.0:$PORT
-
+    # Start Gunicorn server
+    # --workers 1: single worker for memory efficiency
+    # --timeout 120: allow slow inference without timing out
+    startCommand: gunicorn app:app --workers 1 --timeout 120 --bind 0.0.0.0:$PORT
     # Render auto-sets PORT; Flask/Gunicorn must bind to it
     envVars:
       - key: MODEL_PATH
